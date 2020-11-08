@@ -6,12 +6,6 @@ import PackageDescription
 let package = Package(
     name: "AOC",
     products: [
-        .executable(
-            name: "CLI",
-            targets: [
-                "CLI"
-            ]
-        ),
         .library(
             name: "AOC",
             targets: ["AOC"]
