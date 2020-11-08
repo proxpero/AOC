@@ -15,12 +15,16 @@ public enum Part {
     case p2
 }
 
-struct Day {
+public struct Day {
     let name: Int
-    var part1: (String) -> String
-    var part2: (String) -> String
+    public var part1: (String) -> String = { _ in "" }
+    public var part2: (String) -> String = { _ in "" }
 
-    func run(part: Part, input: String) -> String {
+    public init(name: Int) {
+        self.name = name
+    }
+
+    public func run(part: Part, input: String) -> String {
         switch part {
         case .p1:
             return part1(input)
@@ -30,37 +34,48 @@ struct Day {
     }
 }
 
-struct Year {
+public struct Year {
+    public init(name: Int) {
+        self.name = name
+    }
 
     let name: Int
 
-    var d1: Day!
-    var d2: Day!
-    var d3: Day!
-    var d4: Day!
-    var d5: Day!
-    var d6: Day!
-    var d7: Day!
-    var d8: Day!
-    var d9: Day!
-    var d10: Day!
-    var d11: Day!
-    var d12: Day!
-    var d13: Day!
-    var d14: Day!
-    var d15: Day!
-    var d16: Day!
-    var d17: Day!
-    var d18: Day!
-    var d19: Day!
-    var d20: Day!
-    var d21: Day!
-    var d22: Day!
-    var d23: Day!
-    var d24: Day!
-    var d25: Day!
+    public var d1: Day!
+    public var d2: Day!
+    public var d3: Day!
+    public var d4: Day!
+    public var d5: Day!
+    public var d6: Day!
+    public var d7: Day!
+    public var d8: Day!
+    public var d9: Day!
+    public var d10: Day!
+    public var d11: Day!
+    public var d12: Day!
+    public var d13: Day!
+    public var d14: Day!
+    public var d15: Day!
+    public var d16: Day!
+    public var d17: Day!
+    public var d18: Day!
+    public var d19: Day!
+    public var d20: Day!
+    public var d21: Day!
+    public var d22: Day!
+    public var d23: Day!
+    public var d24: Day!
+    public var d25: Day!
 
-    func run(_ day: Day, _ part: Part, input: String) -> String {
+    public func filename(day: Day) -> String {
+        return "\(name).\(day.name)"
+    }
+
+    public func input(day: Day, in bundle: Bundle) -> String {
+        bundle.text(filename: filename(day: day))
+    }
+
+    public func run(_ day: Day, _ part: Part, input: String) -> String {
         day.run(part: part, input: input)
     }
 }

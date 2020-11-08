@@ -5,9 +5,9 @@
         "package": "Parser",
         "repositoryURL": "https://github.com/proxpero/Parser.git",
         "state": {
-          "branch": "main",
+          "branch": null,
           "revision": "3a2bb699cc4cb2029c15e68f2b1299b05fcb37d2",
-          "version": null
+          "version": "0.0.1"
         }
       },
       {
