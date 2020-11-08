@@ -28,9 +28,6 @@ let package = Package(
             dependencies: [
                 .product(name: "Algorithms", package: "swift-algorithms"),
                 .product(name: "Parser", package: "Parser")
-            ],
-            resources: [
-                .process("Input")
             ]
         ),
         .testTarget(
