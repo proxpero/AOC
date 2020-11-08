@@ -14,15 +14,8 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/apple/swift-algorithms", from: "0.0.1"),
         .package(url: "https://github.com/proxpero/Parser.git", .branch("main"))
-
     ],
     targets: [
-        .target(
-            name: "CLI",
-            dependencies: [
-                "AOC"
-            ]
-        ),
         .target(
             name: "AOC",
             dependencies: [
