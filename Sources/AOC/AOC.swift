@@ -39,7 +39,7 @@ public struct Day {
         }
     }
 
-    func run(_ part: Part, _ event: Event, bundle: Bundle) -> String {
+    public func run(_ part: Part, _ event: Event, bundle: Bundle) -> String {
         event.run(self, part, bundle: bundle)
     }
 }
