@@ -38,6 +38,10 @@ public struct Day {
             return part2(input)
         }
     }
+
+    func run(_ part: Part, _ event: Event, bundle: Bundle) -> String {
+        event.run(self, part, bundle: bundle)
+    }
 }
 
 public struct Event {
