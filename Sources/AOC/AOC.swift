@@ -82,7 +82,7 @@ public struct Event {
     }
 
     public func input(day: Day, in bundle: Bundle) -> String {
-        bundle.text(filename: filename(day: day))
+        bundle.text(filename: filename(day: day)).trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     public func run(_ day: Day, _ part: Part, input: String) -> String {
