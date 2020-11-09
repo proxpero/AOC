@@ -16,13 +16,19 @@ public enum Part {
 }
 
 public struct Day {
-    let name: Int
-    public var part1: (String) -> String = { _ in "" }
-    public var part2: (String) -> String = { _ in "" }
-
-    public init(name: Int) {
+    public init(
+        name: Int,
+        part1: @escaping (String) -> String,
+        part2: @escaping (String) -> String
+    ) {
         self.name = name
+        self.part1 = part1
+        self.part2 = part2
     }
+
+    let name: Int
+    let part1: (String) -> String
+    let part2: (String) -> String
 
     public func run(part: Part, input: String) -> String {
         switch part {
