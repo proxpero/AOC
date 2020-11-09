@@ -40,7 +40,7 @@ public struct Day {
     }
 }
 
-public struct Year {
+public struct Event {
     public init(name: Int) {
         self.name = name
     }
@@ -83,5 +83,9 @@ public struct Year {
 
     public func run(_ day: Day, _ part: Part, input: String) -> String {
         day.run(part: part, input: input)
+    }
+
+    public func run(_ day: Day, _ part: Part, bundle: Bundle) -> String {
+        day.run(part: part, input: self.input(day: day, in: bundle))
     }
 }
