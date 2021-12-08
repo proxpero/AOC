@@ -18,6 +18,7 @@ public struct Day {
 
     func run(_ part: Int, input: Input) -> (Output, Double) {
         assert([1, 2].contains(part))
+        let input = input.trimmingCharacters(in: .whitespacesAndNewlines)
         let f: (Input) -> Output = part == 1 ? p1 : p2
         let start = DispatchTime.now()
         let result = f(input)
