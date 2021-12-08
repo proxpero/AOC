@@ -1,28 +1,54 @@
 // swift-tools-version:5.5
-// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
-    name: "AOC2021",
+    name: "AOC",
+    platforms: [
+        .macOS(.v12),
+    ],
     products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "AOC2021",
-            targets: ["AOC2021"]),
+            name: "AdventOfCode",
+            targets: ["AdventOfCode"]
+        ),
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
+        .package(
+            url: "https://github.com/pointfreeco/swift-parsing.git",
+            from: "0.3.1"
+        ),
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
-            name: "AOC2021",
-            dependencies: []),
-        .testTarget(
-            name: "AOC2021Tests",
-            dependencies: ["AOC2021"]),
+            name: "AdventOfCode",
+            dependencies: []
+        ),
     ]
 )
+
+let years = (2015 ... 2021)
+package.targets.append(.executableTarget(
+    name: "CLI",
+    dependencies: years.map { .init(stringLiteral: "AOC\($0)") }
+))
+years.forEach { year in
+    package.products.append(.library(
+        name: "AOC\(year)",
+        targets: ["AOC\(year)"]
+    ))
+    package.targets.append(.target(
+        name: "AOC\(year)",
+        dependencies: [
+            "AdventOfCode",
+            .product(name: "Parsing", package: "swift-parsing"),
+        ],
+        resources: [
+            .process("Input"),
+        ]
+    ))
+    package.targets.append(.testTarget(
+        name: "AOC\(year)Tests",
+        dependencies: [.init(stringLiteral: "AOC\(year)")]
+    ))
+}
