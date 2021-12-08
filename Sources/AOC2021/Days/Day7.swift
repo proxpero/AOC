@@ -6,7 +6,6 @@ extension Day {
 
     private static func parse(input: String) -> [Int] {
         input
-            .trimmingCharacters(in: .whitespacesAndNewlines)
             .split(separator: ",")
             .map { Int(String($0))! }
     }
