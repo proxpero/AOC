@@ -1,3 +1,3 @@
-# AOC2021
+# Advent of Code
 
-A description of this package.
+My Swift solutions to [Advent of Code](https://adventofcode.com).
