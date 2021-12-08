@@ -43,9 +43,6 @@ final class Day8Tests: XCTestCase {
         acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf
         """
 
-        let entries = parse(input: sample)
-        let interpreter = Day.Interpreter(signalPatterns: entries.reduce(into: Set<Day.Pattern>()) { $0.formUnion($1.signalPatterns) })
-
         /*
          cagedb: 0
          ab: 1
@@ -59,19 +56,8 @@ final class Day8Tests: XCTestCase {
          cefabd: 9
          */
 
-        XCTAssertEqual(0, interpreter.interpret(Set<Character>("cagedb")))
-        XCTAssertEqual(1, interpreter.interpret(Set<Character>("ab")))
-        XCTAssertEqual(2, interpreter.interpret(Set<Character>("gcdfa")))
-        XCTAssertEqual(3, interpreter.interpret(Set<Character>("fbcad")))
-        XCTAssertEqual(4, interpreter.interpret(Set<Character>("eafb")))
-        XCTAssertEqual(5, interpreter.interpret(Set<Character>("cdfbe")))
-        XCTAssertEqual(6, interpreter.interpret(Set<Character>("cdfgeb")))
-        XCTAssertEqual(7, interpreter.interpret(Set<Character>("dab")))
-        XCTAssertEqual(8, interpreter.interpret(Set<Character>("acedgfb")))
-        XCTAssertEqual(9, interpreter.interpret(Set<Character>("cefabd")))
-
-        let output = interpreter.interpret(output: entries[0].output)
-        XCTAssertEqual(output, 5353)
+        let entry = parse(input: sample)[0]
+        XCTAssertEqual(entry.interpret(), 5353)
     }
 
     func testInterpretation() {

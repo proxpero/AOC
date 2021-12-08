@@ -9,7 +9,7 @@ import AOC2021
 import Foundation
 
 let year: Year = .y2021
-let day = 7
+let day = 8
 let part = 2
 
 let (result, measurement) = year.run(day: day, part: part)
