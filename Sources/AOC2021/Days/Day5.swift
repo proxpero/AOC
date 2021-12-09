@@ -46,15 +46,8 @@ extension Day {
     static let d5 = Day(p1, p2)
 }
 
-struct Point: Hashable {
-    let x: Int
-    let y: Int
-}
-
-struct Line: Hashable {
-    let start: Point
-    let end: Point
-
+extension Line {
+    
     var isVertical: Bool {
         start.x == end.x
     }

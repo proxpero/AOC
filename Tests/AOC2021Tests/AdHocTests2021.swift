@@ -90,4 +90,30 @@ final class Day8Tests: XCTestCase {
         let result = entries.map { $0.interpret() }.reduce(0, +)
         XCTAssertEqual(result, 61229)
     }
+
+    func testDay9Part1() {
+        let sample = """
+        2199943210
+        3987894921
+        9856789892
+        8767896789
+        9899965678
+        """
+
+        let result = Day.d9.p1(sample)
+        XCTAssertEqual(result, "15")
+    }
+
+    func testDay9Part2() {
+        let sample = """
+        2199943210
+        3987894921
+        9856789892
+        8767896789
+        9899965678
+        """
+
+        let result = Day.d9.p2(sample)
+        XCTAssertEqual(result, "1134")
+    }
 }
