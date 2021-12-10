@@ -18,6 +18,7 @@ let package = Package(
             url: "https://github.com/pointfreeco/swift-parsing.git",
             from: "0.3.1"
         ),
+        .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0"),
     ],
     targets: [
         .target(
@@ -42,6 +43,7 @@ years.forEach { year in
         dependencies: [
             "AdventOfCode",
             .product(name: "Parsing", package: "swift-parsing"),
+            .product(name: "Algorithms", package: "swift-algorithms"),
         ],
         resources: [
             .process("Input"),
