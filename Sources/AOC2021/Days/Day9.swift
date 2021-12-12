@@ -17,9 +17,9 @@ extension Day {
     static func lowPoints(in grid: Grid<Int>) -> [Point] {
         var lowPoints: [Point] = []
         nextPoint: for point in grid.points {
-            let value = grid.value(at: point)
-            for neighbor in grid.neighbors(of: point) {
-                if grid.value(at: neighbor) <= value {
+            let value = grid[point]
+            for neighbor in grid.orthogonalNeighbors(of: point) {
+                if grid[neighbor] <= value {
                     continue nextPoint
                 }
             }
@@ -34,9 +34,9 @@ extension Day {
 
         func visit(_ point: Point, for lowPoint: Point) {
             visited.insert(point)
-            for neighbor in grid.neighbors(of: point) where !visited.contains(neighbor) {
+            for neighbor in grid.orthogonalNeighbors(of: point) where !visited.contains(neighbor) {
                 visited.insert(neighbor)
-                guard grid.value(at: neighbor) != 9 else { continue }
+                guard grid[neighbor] != 9 else { continue }
                 basins[lowPoint]?.insert(neighbor)
                 visit(neighbor, for: lowPoint)
             }
@@ -52,7 +52,7 @@ extension Day {
     private static func p1(input: String) -> String {
         let grid = parse(input: input)
         let lowPoints = lowPoints(in: grid)
-        let result = lowPoints.reduce(into: 0) { $0 += grid.value(at: $1) + 1 }
+        let result = lowPoints.reduce(into: 0) { $0 += grid[$1] + 1 }
         return String(describing: result)
     }
 

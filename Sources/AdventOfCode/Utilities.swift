@@ -23,24 +23,11 @@ public struct Point: Hashable {
     public let y: Int
 }
 
-//public extension Point {
-//    func neighborsInGrid(width: Int, height: Int) -> Set<Point> {
-//        var result: Set<Point> = []
-//        if x > 0 {
-//            result.insert(.init(x: x - 1, y: y))
-//        }
-//        if x < width - 1 {
-//            result.insert(.init(x: x + 1, y: y))
-//        }
-//        if y > 0 {
-//            result.insert(.init(x: x, y: y - 1))
-//        }
-//        if y < height - 1 {
-//            result.insert(.init(x: x, y: y + 1))
-//        }
-//        return result
-//    }
-//}
+extension Point: CustomStringConvertible {
+    public var description: String {
+        "(\(x),\(y))"
+    }
+}
 
 public struct Grid<A> {
     var store: Array<Array<A>>
@@ -52,12 +39,17 @@ public struct Grid<A> {
 
 public extension Grid {
 
+    subscript(_ point: Point) -> A {
+        get {
+            store[point.y][point.x]
+        }
+        set {
+            store[point.y][point.x] = newValue
+        }
+    }
+
     var width: Int { store[0].count }
     var height: Int { store.count }
-
-    func value(at point: Point) -> A {
-        store[point.y][point.x]
-    }
 
     var points: [Point] {
         var result: [Point] = []
@@ -69,7 +61,7 @@ public extension Grid {
         return result
     }
 
-    func neighbors(of point: Point) -> Set<Point> {
+    func orthogonalNeighbors(of point: Point) -> Set<Point> {
         var result: Set<Point> = []
         if point.x > 0 {
             result.insert(.init(x: point.x - 1, y: point.y))
@@ -86,6 +78,37 @@ public extension Grid {
         return result
     }
 
+    func diagonalNeighbors(of point: Point) -> Set<Point> {
+        var result: Set<Point> = []
+        if point.x > 0, point.y > 0 {
+            result.insert(.init(x: point.x - 1, y: point.y - 1))
+        }
+        if point.x < width - 1, point.y > 0 {
+            result.insert(.init(x: point.x + 1, y: point.y - 1))
+        }
+        if point.x > 0, point.y < height - 1 {
+            result.insert(.init(x: point.x - 1, y: point.y + 1))
+        }
+        if point.x < width - 1, point.y < height - 1 {
+            result.insert(.init(x: point.x + 1, y: point.y + 1))
+        }
+        return result
+    }
+
+    func neighbors(of point: Point) -> Set<Point> {
+        orthogonalNeighbors(of: point).union(diagonalNeighbors(of: point))
+    }
+}
+
+extension Grid: CustomStringConvertible where A == Int {
+    public var description: String {
+        var result: [String] = []
+        for row in store {
+            result.append(row.map(String.init).joined())
+        }
+
+        return result.joined(separator: "\n")
+    }
 }
 
 public struct Line: Hashable {
