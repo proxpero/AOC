@@ -73,20 +73,20 @@ final class AOC2021Tests: XCTestCase {
         XCTAssertEqual(day.p2(input), "2289754624")
     }
 
-//    func testDay11() {
-//        let day = Year.days[11]!
-//        let input = Year.load(day: 11)
-//        XCTAssertEqual(day.p1(input), "")
-//        XCTAssertEqual(day.p2(input), "")
-//    }
-//
-//    func testDay12() {
-//        let day = Year.days[12]!
-//        let input = Year.load(day: 12)
-//        XCTAssertEqual(day.p1(input), "")
-//        XCTAssertEqual(day.p2(input), "")
-//    }
-//
+    func testDay11() {
+        let day = Year.days[11]!
+        let input = Year.load(day: 11)
+        XCTAssertEqual(day.p1(input), "1700")
+        XCTAssertEqual(day.p2(input), "273")
+    }
+
+    func testDay12() {
+        let day = Year.days[12]!
+        let input = Year.load(day: 12)
+        XCTAssertEqual(day.p1(input), "4104")
+        XCTAssertEqual(day.p2(input), "119760")
+    }
+
 //    func testDay13() {
 //        let day = Year.days[13]!
 //        let input = Year.load(day: 13)
