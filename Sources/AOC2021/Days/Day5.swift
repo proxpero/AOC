@@ -5,13 +5,9 @@ import Parsing
 extension Day {
 
     private static func parse(input: String) -> [Line] {
-        let point = Int.parser()
-            .skip(",")
-            .take(Int.parser())
-            .map(Point.init)
-        let vent = point
+        let vent = Point.parser
             .skip(" -> ")
-            .take(point)
+            .take(Point.parser)
             .map(Line.init)
         let vents = Many(vent, separator: "\n")
         return vents.parse(input)!

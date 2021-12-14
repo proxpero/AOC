@@ -19,8 +19,8 @@ public struct Point: Hashable {
         self.y = y
     }
 
-    public let x: Int
-    public let y: Int
+    public var x: Int
+    public var y: Int
 }
 
 extension Point: CustomStringConvertible {
@@ -100,11 +100,11 @@ public extension Grid {
     }
 }
 
-extension Grid: CustomStringConvertible where A == Int {
+extension Grid: CustomStringConvertible {
     public var description: String {
         var result: [String] = []
         for row in store {
-            result.append(row.map(String.init).joined())
+            result.append(row.map{ "\($0)" }.joined())
         }
 
         return result.joined(separator: "\n")
@@ -120,3 +120,14 @@ public struct Line: Hashable {
         self.end = end
     }
 }
+
+import Parsing
+
+public extension Point {
+    static let parser = Int.parser()
+        .skip(",")
+        .take(Int.parser())
+        .map(Point.init)
+}
+
+
