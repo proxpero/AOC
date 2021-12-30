@@ -4,7 +4,7 @@ import Foundation
 extension Year {
     static func load(day: Int) -> String {
         let url = Bundle.module.url(forResource: "2020.\(day)", withExtension: "txt")
-        return try! String(contentsOf: url!).trimmingCharacters(in: .whitespacesAndNewlines)
+        return try! String(contentsOf: url!)
     }
 
     static let days: [Int: Day] = [
