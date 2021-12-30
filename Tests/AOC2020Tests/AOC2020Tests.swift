@@ -6,8 +6,8 @@ final class AOC2020Tests: XCTestCase {
     func testDay1() {
         let day = Year.days[1]!
         let input = Year.load(day: 1)
-        XCTAssertEqual(day.p1(input), "514579")
-        XCTAssertEqual(day.p2(input), "")
+        XCTAssertEqual(day.p1(input), "793524")
+        XCTAssertEqual(day.p2(input), "61515678")
     }
 
     func testDay2() {
